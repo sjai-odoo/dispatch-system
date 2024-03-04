@@ -8,4 +8,5 @@ class FleetVehicleModelCategory(models.Model):
 
     @api.depends('max_weight', 'max_volume')
     def _compute_display_name(self):
-        self.display_name = self.name + " ( " + str(self.max_weight) + "kg, " + str(self.max_volume) + " m3 )"
+        for record in self:
+            record.display_name = record.name + " ( " + str(record.max_weight) + " kg, " + str(record.max_volume) + " m3 )"

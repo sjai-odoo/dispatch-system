@@ -14,5 +14,7 @@
     'version': '1.0',
     'data' : [
         'views/fleet_vehicle_model_category.xml',
+        'views/stock_picking_batch.xml',
+        'views/stock_picking.xml'
     ]
 }
