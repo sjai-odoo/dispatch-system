@@ -2,19 +2,18 @@
 #Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'stock-transport',
+    'name': 'stock-depends',
     # 'category': 'industry/real estate',
     'description': 'Transport Management System',
     'summary': 'Realestate property sell/buy',
-    'depends': ['fleet', 'stock_picking_batch'],
+    'depends': ['base', 'stock'],
     'installable': True,
     'application': True,
-    'sequence': 1,
+    'sequence': 2,
     'license': 'OEEL-1',
     'version': '1.0',
-    'data' : [
-        'views/fleet_vehicle_model_category.xml',
-        'views/stock_picking_batch.xml',
-        'views/stock_picking.xml'
+    'auto_install': True,
+    'data' :[
+        'views/res_config_settings.xml'
     ]
 }

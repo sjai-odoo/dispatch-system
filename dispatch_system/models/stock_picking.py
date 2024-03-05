@@ -6,4 +6,6 @@ from odoo import _, api, Command, fields, models
 class StockPickingBatch(models.Model):
     _inherit = "stock.picking"
     
-    volume_per_transfer = fields.Float()
+    volume_per_transfer = fields.Float() #compute="_compute_volume"
+
+    # def _compute_volume(self):
