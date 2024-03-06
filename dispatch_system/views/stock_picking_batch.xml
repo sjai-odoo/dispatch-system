@@ -8,8 +8,10 @@
             <graph string="Day By day">
                 <field name="scheduled_date" interval="day"/> <!--from community code-->
                 <field name="vehicle_category_id"/>
-                <field name="weight" type="measure"/>
-                <field name="volume" type="measure"/>
+                <field name="weight"/>
+                <field name="volume"/>
+                <field name="move_lines"/>
+                <field name="picking_lines"/>
             </graph>
         </field>
     </record>
@@ -18,13 +20,14 @@
         <field name="name">model_name.view.gantt</field>
         <field name="model">stock.picking.batch</field>
         <field name="arch" type="xml">
-            <gantt string="" date_start="start_date" date_stop="end_date" default_group_by="dock_id"
+            <gantt string="" date_start="scheduled_date" date_stop="end_date" default_group_by="dock_id,vehicle_id"
             color = "vehicle_category_id"
             decoration-info="state == 'draft'"
             decoration-danger="weight > 100"
             total_row="True">
                 <field name="weight"/>
                 <field name="vehicle_category_id"/>
+                <field name="vehicle_id"/>
                 <field name="state"/>
                 <templates>
                     <div t-name="gantt-popover" class="container-fluid">
@@ -50,8 +53,16 @@
                 <field name="dock_id"/>
                 <field name="vehicle_id" placeholder='Third Party Provider'/>
                 <field name="vehicle_category_id" placeholder='Semi-Truck ( 25.0 kg, 30 m3)'/>
-                <field name="weight" widget='progressbar' invisible="not vehicle_category_id" string="weight 140 kg "/>
-                <field name="volume" widget='progressbar' invisible="not vehicle_category_id" string="volume 110 m3"/>
+                <label for='total_weight' string="Weight" invisible="not vehicle_category_id"/>
+                    <div invisible="not vehicle_category_id">
+                        <span><field name='total_weight' nolabel='1'/> kg</span>
+                        <field name='weight' widget='progressbar' nolabel='1' />
+                    </div>
+                <label for='total_volume' string="Weight" invisible="not vehicle_category_id"/>
+                    <div invisible="not vehicle_category_id">
+                            <span><field name='total_volume' nolabel='1'/> m3</span>
+                        <field name='volume' widget='progressbar' nolabel='1' />
+                    </div>
             </xpath>
         </field>
     </record>
